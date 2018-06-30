@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CPES.Models;
+using static System.Environment;
+
 namespace CPES
 {
     public static class CPES
@@ -104,8 +106,8 @@ namespace CPES
 
         public static string[] CreateCsvSucesso(List<DadosTrabalhador> dadosTrabalhador)
         {
-            string nomeArquivo = "CPES_" + DateTime.Now.ToString("ddMMyyyyHHmmss") + ".csv";
-            string caminho = Directory.GetCurrentDirectory();
+            string nomeArquivo = "CPES_" + DateTime.Now.ToString("ddMMyyyyHHmmss") + ".csv";            
+            string caminho = GetFolderPath(SpecialFolder.DesktopDirectory);
             FileStream file = new FileStream(caminho + "\\" + nomeArquivo, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamWriter writer = new StreamWriter(file, Encoding.Default);
 
@@ -129,7 +131,7 @@ namespace CPES
         public static string[] CreateCsvErro(Erro erro)
         {
             string nomeArquivo = "log_erro_" + DateTime.Now.ToString("ddMMyyyy") + ".csv";
-            string caminho = Directory.GetCurrentDirectory();
+            string caminho = GetFolderPath(SpecialFolder.DesktopDirectory);
             FileStream file;
             StreamWriter writer;
 
